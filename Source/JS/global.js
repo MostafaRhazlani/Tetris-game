@@ -21,8 +21,23 @@ for (let i = 0; i < 10; i++) {
 
 function createGameBlock() {
     let form;
+    
+    
+    let formsFunctions = [createFormSquare, createFormLine, createFormL, createFormReversedL, createFormI, createFormZ, createFormReversedZ];
 
-    form = createSquare();
+    let randomNumber = Math.floor(Math.random() * formsFunctions.length);
+    
+    form = formsFunctions[randomNumber]();
+
+    // if (randomNumber == 0) {
+    //     form = createFormSquare();
+    // }  else if (randomNumber == 1) {
+    //     form = createFormLine();
+    // } else if (randomNumber == 2) {
+    //     form = createFormL();
+    // } else if (randomNumber == 3) {
+    //     form = createFormReversedL();
+    // }
 
     let i = 0;
     let slide = setInterval(() => {
@@ -48,11 +63,11 @@ function createGameBlock() {
 
 // Create a square of the form
 
-function createElementBlock(row, column) {
+function createElementBlock(row, column, color = "red") {
     let d = document.createElement('div');
 
     d.className = "game-block";
-    d.style.backgroundColor = "blueviolet";
+    d.style.backgroundColor = color;
 
     gameContainer.children[row].children[column].append(d);
 
@@ -61,14 +76,85 @@ function createElementBlock(row, column) {
 
 // Create Form: Square
 
-function createSquare() {
+function createFormSquare() {
     
     let formArray = [[], []];
 
-    formArray[1].push(createElementBlock(0, 4));
-    formArray[1].push(createElementBlock(0, 5));
-    formArray[0].push(createElementBlock(1, 4));
-    formArray[0].push(createElementBlock(1, 5));
+    formArray[1].push(createElementBlock(0, 4, "blueviolet"));
+    formArray[1].push(createElementBlock(0, 5, "blueviolet"));
+    formArray[0].push(createElementBlock(1, 4, "blueviolet"));
+    formArray[0].push(createElementBlock(1, 5, "blueviolet"));
+
+    return formArray;
+}
+
+function createFormLine() {
+    
+    let formArray = [[], [], []];
+
+    formArray[2].push(createElementBlock(0, 4, "orangered"));
+    formArray[1].push(createElementBlock(1, 4, "orangered"));
+    formArray[0].push(createElementBlock(2, 4, "orangered"));
+
+    return formArray;
+}
+
+function createFormL() {
+    
+    let formArray = [[], [], []];
+
+    formArray[2].push(createElementBlock(0, 4, "dodgerblue"));
+    formArray[1].push(createElementBlock(1, 4, "dodgerblue"));
+    formArray[0].push(createElementBlock(2, 4, "dodgerblue"));
+    formArray[0].push(createElementBlock(2, 5, "dodgerblue"));
+
+    return formArray;
+}
+
+function createFormReversedL() {
+    
+    let formArray = [[], [], []];
+
+    formArray[2].push(createElementBlock(0, 5, "green"));
+    formArray[1].push(createElementBlock(1, 5, "green"));
+    formArray[0].push(createElementBlock(2, 4, "green"));
+    formArray[0].push(createElementBlock(2, 5, "green"));
+
+    return formArray;
+}
+
+function createFormI() {
+    
+    let formArray = [[], []];
+
+    formArray[1].push(createElementBlock(0, 4, "black"));
+    formArray[0].push(createElementBlock(1, 3, "black"));
+    formArray[0].push(createElementBlock(1, 4, "black"));
+    formArray[0].push(createElementBlock(1, 5, "black"));
+
+    return formArray;
+}
+
+function createFormZ() {
+    
+    let formArray = [[], []];
+
+    formArray[1].push(createElementBlock(0, 3, "red"));
+    formArray[1].push(createElementBlock(0, 4, "red"));
+    formArray[0].push(createElementBlock(1, 4, "red"));
+    formArray[0].push(createElementBlock(1, 5, "red"));
+
+    return formArray;
+}
+
+function createFormReversedZ() {
+    
+    let formArray = [[], []];
+
+    formArray[1].push(createElementBlock(0, 5, "gray"));
+    formArray[1].push(createElementBlock(0, 4, "gray"));
+    formArray[0].push(createElementBlock(1, 4, "gray"));
+    formArray[0].push(createElementBlock(1, 3, "gray"));
 
     return formArray;
 }
