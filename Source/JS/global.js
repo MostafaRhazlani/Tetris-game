@@ -164,8 +164,6 @@ function createFormReversedZ() {
 // - Line Validation
 // - 
 
-createGameBlock();
-
 // Function to slide Form Down
 
 function slideBlockDown(form) {
