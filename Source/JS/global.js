@@ -53,12 +53,11 @@ function createGameBlock() {
 
 function createElementBlock(row, column, color = "red") {
     let d = document.createElement('div');
-  
+
     d.className = "game-block";
     d.style.backgroundColor = color;
 
     gameContainer.children[row].children[column].append(d);
-
 
     return d;
 }
@@ -152,7 +151,7 @@ function createFormReversedZ() {
 // - 
 // - Line Validation
 // - 
-createGameBlock();
+
 // Function to slide Form Down
 
 function slideBlockDown(form) {
@@ -193,21 +192,6 @@ function slideBlockDown(form) {
 
 function slideBlockRight(form) {
 
-
-      for (let item of form[0]) {
-        try {
-            // alert('a');
-            if (!item.parentElement.parentElement.nextElementSibling || item.parentElement.parentElement.nextElementSibling.children[item.parentElement.dataset.column].firstElementChild) {
-                // alert('k')
-                return false
-            }
-        } catch {
-            // alert('l');
-            return false;
-        }
-    }
-
-
     // Apply to each square of the form
 
     for (let i = 0; i < form.length; i++) {
@@ -222,7 +206,7 @@ function slideBlockRight(form) {
         }
     }
 }
-         
+
 // Function to slide Form to Left
 
 function slideBlockLeft(form) {
