@@ -33,6 +33,7 @@ function createGameBlock() {
     let slide = setInterval(() => {
         if (!slideBlockDown(form)) {
             clearInterval(slide);
+            checkRowFull();
             createGameBlock();
         }
     }, 1000);
