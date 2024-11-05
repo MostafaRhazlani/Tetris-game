@@ -29,6 +29,10 @@ function createGameBlock() {
     
     form = formsFunctions[randomNumber]();
 
+    if (form == null) {
+        return
+    }
+
     let i = 0;
     let slide = setInterval(() => {
         if (!slideBlockDown(form)) {
@@ -68,6 +72,9 @@ function createElementBlock(row, column, color = "red") {
 function createFormSquare() {
     
     let formArray = [[], []];
+    if (gameOver(1,[4, 5])) {
+        return null;
+    }
 
     formArray[1].push(createElementBlock(0, 4, "blueviolet"));
     formArray[1].push(createElementBlock(0, 5, "blueviolet"));
@@ -80,7 +87,10 @@ function createFormSquare() {
 function createFormLine() {
     
     let formArray = [[], [], []];
-
+    
+    if (gameOver(2,[4])) {
+        return null;
+    }
     formArray[2].push(createElementBlock(0, 4, "orangered"));
     formArray[1].push(createElementBlock(1, 4, "orangered"));
     formArray[0].push(createElementBlock(2, 4, "orangered"));
@@ -88,10 +98,23 @@ function createFormLine() {
     return formArray;
 }
 
+function gameOver(N,par){
+    for (let item of par){
+        if(gameContainer.children[N].children[item].firstElementChild){
+            alert("Game Over")
+            return true
+        }
+    }
+}
+
+
 function createFormL() {
     
     let formArray = [[], [], []];
-
+    
+    if (gameOver(2,[4,5])) {
+        return null;
+    }
     formArray[2].push(createElementBlock(0, 4, "dodgerblue"));
     formArray[1].push(createElementBlock(1, 4, "dodgerblue"));
     formArray[0].push(createElementBlock(2, 4, "dodgerblue"));
@@ -103,7 +126,10 @@ function createFormL() {
 function createFormReversedL() {
     
     let formArray = [[], [], []];
-
+    
+    if (gameOver(2,[3,4])) {
+        return null;
+    }
     formArray[2].push(createElementBlock(0, 5, "green"));
     formArray[1].push(createElementBlock(1, 5, "green"));
     formArray[0].push(createElementBlock(2, 4, "green"));
@@ -115,7 +141,10 @@ function createFormReversedL() {
 function createFormI() {
     
     let formArray = [[], []];
-
+    
+    if (gameOver(1,[3,4,5])) {
+        return null;
+    }
     formArray[1].push(createElementBlock(0, 4, "black"));
     formArray[0].push(createElementBlock(1, 3, "black"));
     formArray[0].push(createElementBlock(1, 4, "black"));
@@ -124,10 +153,13 @@ function createFormI() {
     return formArray;
 }
 
+
 function createFormZ() {
     
     let formArray = [[], []];
-
+    if (gameOver(1,[4,5])) {
+        return null;
+    }
     formArray[1].push(createElementBlock(0, 3, "red"));
     formArray[1].push(createElementBlock(0, 4, "red"));
     formArray[0].push(createElementBlock(1, 4, "red"));
@@ -139,7 +171,9 @@ function createFormZ() {
 function createFormReversedZ() {
     
     let formArray = [[], []];
-
+    if (gameOver(1,[3,4])) {
+        return null;
+    }
     formArray[1].push(createElementBlock(0, 5, "gray"));
     formArray[1].push(createElementBlock(0, 4, "gray"));
     formArray[0].push(createElementBlock(1, 4, "gray"));
@@ -147,6 +181,7 @@ function createFormReversedZ() {
 
     return formArray;
 }
+
 
 // - Forms
 // - 
