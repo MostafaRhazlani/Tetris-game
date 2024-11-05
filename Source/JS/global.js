@@ -19,13 +19,17 @@ for (let i = 0; i < 10; i++) {
 
 // Create a random Form
 
+let formNumber = 0;
+let formDeg = 0;    // 0, 90, 180, 270
+
+let form;
 function createGameBlock() {
-    let form;
-    
     
     let formsFunctions = [createFormSquare, createFormLine, createFormL, createFormReversedL, createFormI, createFormZ, createFormReversedZ];
-
+    
     let randomNumber = Math.floor(Math.random() * formsFunctions.length);
+    formNumber = randomNumber;
+    formDeg = 0;
     
     form = formsFunctions[randomNumber]();
 
@@ -46,6 +50,9 @@ function createGameBlock() {
             slideBlockLeft(form)
         } else if (e.key == "ArrowDown") {
             slideBlockDown(form)
+        }else if(e.key == "ArrowUp"){
+            slideBlockUpRot()
+    
         }
     }
 }
