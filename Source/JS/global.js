@@ -29,16 +29,6 @@ function createGameBlock() {
     
     form = formsFunctions[randomNumber]();
 
-    // if (randomNumber == 0) {
-    //     form = createFormSquare();
-    // }  else if (randomNumber == 1) {
-    //     form = createFormLine();
-    // } else if (randomNumber == 2) {
-    //     form = createFormL();
-    // } else if (randomNumber == 3) {
-    //     form = createFormReversedL();
-    // }
-
     let i = 0;
     let slide = setInterval(() => {
         if (!slideBlockDown(form)) {
@@ -48,9 +38,7 @@ function createGameBlock() {
     }, 1000);
 
     window.onkeydown = function (e) {
-        // console.log('jjjjjjjjjjjjjj');
         
-        // console.log(e.key);
         if (e.key == "ArrowRight") {
             slideBlockRight(form)
         } else if (e.key == "ArrowLeft") {
@@ -174,13 +162,10 @@ function slideBlockDown(form) {
 
     for (let item of form[0]) {
         try {
-            // alert('a');
             if (!item.parentElement.parentElement.nextElementSibling || item.parentElement.parentElement.nextElementSibling.children[item.parentElement.dataset.column].firstElementChild) {
-                // alert('k')
                 return false
             }
         } catch {
-            // alert('l');
             return false;
         }
     }
@@ -234,7 +219,6 @@ function slideBlockRight(form) {
             } catch {
                 return false;
             }
-            // alert();
         }
     }
 }
@@ -255,7 +239,6 @@ function slideBlockLeft(form) {
             } catch {
                 return false;
             }
-            // alert();
         }
     }
 }
